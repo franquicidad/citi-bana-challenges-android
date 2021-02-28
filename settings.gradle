@@ -1,3 +1,6 @@
+include ':domain'
+include ':useCases'
+include ':data'
 include ':chat'
 include ':app'
 rootProject.name = "citi-bana-challenges-android"
