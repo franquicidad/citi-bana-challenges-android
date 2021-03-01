@@ -8,7 +8,7 @@ class MainPresenter @Inject constructor(
     private val getAllUsersUseCase: InterfaceGetAllUsersUseCase
 ) {
     interface View{
-        fun getUsersChat(userChatList:List<User>): List<User>
+        fun getUsersChat(getAllUsersUseCase: InterfaceGetAllUsersUseCase): List<User>
     }
     private var view:View? =null
     fun onCreate(view:View) {
@@ -21,7 +21,7 @@ class MainPresenter @Inject constructor(
     }
 
     fun getChatUser(userList:List<User>): List<User>? {
-        return view?.getUsersChat(userList)
+        return userList
 
     }
 

@@ -8,6 +8,7 @@ import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.DataBindingUtil.setContentView
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.franco.chat.ui.ChatActivity
 import com.franco.citi_bana_challenges_android.databinding.ActivityMenuMainBinding
 import com.franco.citi_bana_challenges_android.model.MainMenu
 import kotlinx.coroutines.Dispatchers
@@ -26,7 +27,7 @@ class MainMenuActivity : AppCompatActivity(), CreateMainMenuItems {
             val list=createMainModuleNames()
              recyclerViewApp.adapter= MainMenuAdapter(list)
             recyclerViewApp.setOnClickListener{
-                    startActivity<MainMenuActivity>()
+                    startActivity<ChatActivity>()
             }
         }
 

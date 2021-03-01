@@ -1,7 +1,9 @@
 package com.franco.chat.ui
 
+import android.graphics.drawable.GradientDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.LinearLayout
 import com.franco.chat.R
 import com.franco.chat.databinding.UserChatBinding
 import com.franco.domain.User
@@ -21,11 +23,12 @@ class ChatActivity(
         super.onCreate(savedInstanceState)
         binding = UserChatBinding.inflate(layoutInflater).apply {
             setContentView(root)
-            presenter.onCreate(this@ChatActivity)
+
+            binding.presenter?.onCreate(this@ChatActivity)
             list= mutableListOf()
-            list= presenter.getChatUser(getAllUsersUseCase.createAllUsers())!!
-            getUsersChat(list)
-            recyclerViewChat.adapter = adapter
+            list= presenter?.getChatUser(getAllUsersUseCase.createAllUsers())!!
+
+            recyclerViewChat.adapter = ChatAdapter(this@ChatActivity,list)
 
         }
 
@@ -36,9 +39,9 @@ class ChatActivity(
         super.onDestroy()
     }
 
-    override fun getUsersChat(userChatList: List<User>):List<User>{
-        adapter= ChatAdapter(this@ChatActivity,userChatList)
-
-
+    override fun getUsersChat(getAllUsersUseCase: InterfaceGetAllUsersUseCase): List<User> {
+        return getAllUsersUseCase.createAllUsers()
     }
+
+
 }
