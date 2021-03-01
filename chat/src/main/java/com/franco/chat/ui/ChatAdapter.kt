@@ -8,9 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.franco.chat.R
 import com.franco.domain.User
 
-class DataAdapter(
+class ChatAdapter(
     private val context: Context
-) : RecyclerView.Adapter<DataAdapter.BaseViewHolder<*>>() {
+) : RecyclerView.Adapter<ChatAdapter.BaseViewHolder<*>>() {
 
     private var adapterDataList: List<Any> = emptyList()
 
@@ -50,7 +50,7 @@ class DataAdapter(
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return adapterDataList.size
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -66,6 +66,7 @@ class DataAdapter(
 
         override fun bind(userOne: User) {
             //Do your view assignment here from the data model
+
         }
     }
     inner class UserTwoViewHolder(itemView: View) : BaseViewHolder<User>(itemView) {

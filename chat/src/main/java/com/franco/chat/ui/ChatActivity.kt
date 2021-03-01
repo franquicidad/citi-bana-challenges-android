@@ -14,6 +14,7 @@ class ChatActivity(
 
     private val presenter by lazy { MainPresenter(getAllUsersUseCase) }
     private lateinit var binding :UserChatBinding
+    private lateinit var adapter: ChatAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +32,6 @@ class ChatActivity(
     }
 
     override fun getUsersChat(userChatList: List<User>) {
-        adapter.userChatList =userChatList
+        adapter.adapterData =userChatList
     }
 }
