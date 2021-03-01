@@ -5,8 +5,9 @@ import com.franco.chat.util.fromDomainToNetwork
 import com.franco.chat.util.fromNetworkToDomainMapper
 import com.franco.data.RemoteDataSourceSim
 import com.franco.domain.User
+import javax.inject.Inject
 
-class UserRemoteDataSource(
+class UserRemoteDataSource @Inject constructor(
     private val apiService: ApiService
 ):  RemoteDataSourceSim{
 

@@ -12,7 +12,7 @@ import androidx.databinding.DataBindingUtil.setContentView
 
 fun ViewGroup.inflate(@LayoutRes layoutRes:Int):View=
       LayoutInflater.from(context)
-         .inflate(R.layout.item_main_menu_recycler,this,false)
+         .inflate(layoutRes,this,false)
 
 
 inline fun <reified T: Activity> Context.startActivity(){
