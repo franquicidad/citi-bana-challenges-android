@@ -1,6 +1,8 @@
 plugins {
     id 'java-library'
     id 'kotlin'
+    id 'kotlin-kapt'
+
 }
 
 java {
@@ -11,4 +13,6 @@ java {
 dependencies {
     implementation project(":domain")
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'com.google.dagger:dagger:2.32'
+    kapt 'com.google.dagger:dagger-compiler:2.32'
 }
