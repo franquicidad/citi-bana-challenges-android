@@ -9,19 +9,24 @@ import com.franco.usecases.GetAllUsersUseCase
 import com.franco.usecases.InterfaceGetAllUsersUseCase
 
 class ChatActivity(
-     getAllUsersUseCase: InterfaceGetAllUsersUseCase
+   private val getAllUsersUseCase: InterfaceGetAllUsersUseCase
 ) : AppCompatActivity() ,MainPresenter.View{
 
     private val presenter by lazy { MainPresenter(getAllUsersUseCase) }
     private lateinit var binding :UserChatBinding
     private lateinit var adapter: ChatAdapter
+    private lateinit var list: List<User>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = UserChatBinding.inflate(layoutInflater).apply {
             setContentView(root)
             presenter.onCreate(this@ChatActivity)
+            list= mutableListOf()
+            list= presenter.getChatUser(getAllUsersUseCase.createAllUsers())!!
+            getUsersChat(list)
             recyclerViewChat.adapter = adapter
+
         }
 
     }
@@ -31,7 +36,9 @@ class ChatActivity(
         super.onDestroy()
     }
 
-    override fun getUsersChat(userChatList: List<User>) {
-        adapter.adapterData =userChatList
+    override fun getUsersChat(userChatList: List<User>):List<User>{
+        adapter= ChatAdapter(this@ChatActivity,userChatList)
+
+
     }
 }

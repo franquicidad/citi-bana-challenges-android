@@ -6,13 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.franco.chat.R
+import com.franco.chat.databinding.LeftItemUserTwoBinding
+import com.franco.chat.databinding.RightItemUserOneBinding
 import com.franco.domain.User
 
 class ChatAdapter(
-    private val context: Context
+    private val context: Context ,
+    private val userList: List<User>
 ) : RecyclerView.Adapter<ChatAdapter.BaseViewHolder<*>>() {
 
-    private var adapterDataList: List<Any> = emptyList()
+
 
     companion object {
         private const val USER_ONE = 1
@@ -40,7 +43,7 @@ class ChatAdapter(
     }
 
     override fun onBindViewHolder(holder: BaseViewHolder<*>, position: Int) {
-        val element = adapterDataList[position]
+        val element = userList[position]
         when (holder) {
             is UserOneViewHolder -> holder.bind(element as User)
             is UserTwoViewHolder -> holder.bind(element as User)
@@ -50,29 +53,42 @@ class ChatAdapter(
     }
 
     override fun getItemCount(): Int {
-        return adapterDataList.size
+        return userList.size
     }
 
     override fun getItemViewType(position: Int): Int {
-        val comparable = adapterDataList[position]
-        return when (comparable) {
-            is Int -> USER_ONE
-            is Int -> USER_TWO
-            else -> throw IllegalArgumentException("Invalid type of data " + position)
+        if(userList.get(position).id.equals(USER_ONE)){
+            return 1
+        }else{
+            return 2
         }
+//        val comparable = adapterDataList[position]
+//        return when (comparable) {
+//            is Int -> USER_ONE
+//            is Int -> USER_TWO
+//            else -> throw IllegalArgumentException("Invalid type of data " + position)
+//        }
     }
 
     inner class UserOneViewHolder(itemView: View) : BaseViewHolder<User>(itemView) {
-
+            val binding= RightItemUserOneBinding.bind(itemView)
         override fun bind(userOne: User) {
-            //Do your view assignment here from the data model
+            with(binding){
+                senderMessageRight.text = userOne.userName
+                messageRight.text=userOne.message
+                timestampRight.text=userOne.timeStamp
+            }
 
         }
     }
     inner class UserTwoViewHolder(itemView: View) : BaseViewHolder<User>(itemView) {
-
+            val bindingLeft= LeftItemUserTwoBinding.bind(itemView)
         override fun bind(userTwo: User) {
-            //Do your view assignment here from the data model
+            with(bindingLeft){
+                senderMessageLeft.text= userTwo.userName
+                messageLeft.text = userTwo.message
+                timestampLeft.text = userTwo.timeStamp
+            }
         }
     }
 }
