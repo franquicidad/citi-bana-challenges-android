@@ -1,13 +1,5 @@
 package com.franco.chat.di
 
-import com.franco.chat.simNetwork.ApiService
-import com.franco.chat.simNetwork.ApiServiceImpl
-import com.franco.chat.simNetwork.UserRemoteDataSource
-import com.franco.data.RemoteDataSourceSim
-import com.franco.usecases.GetAllUsersUseCase
-import dagger.Binds
-import dagger.Module
-
 //@Module
 //abstract class UseCaseModule {
 //

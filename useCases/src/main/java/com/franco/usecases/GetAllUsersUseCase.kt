@@ -1,6 +1,5 @@
 package com.franco.usecases
 
-import com.franco.data.RemoteDataSourceSim
 import com.franco.data.UserRepository
 
 import com.franco.domain.User

@@ -3,7 +3,6 @@ package com.franco.chat.diHilt
 import com.franco.chat.simNetwork.ApiService
 import com.franco.chat.simNetwork.ApiServiceImpl
 import com.franco.chat.simNetwork.UserRemoteDataSource
-import com.franco.chat.ui.MainPresenter
 import com.franco.data.RemoteDataSourceSim
 import com.franco.data.UserRepository
 import com.franco.usecases.GetAllUsersUseCase
