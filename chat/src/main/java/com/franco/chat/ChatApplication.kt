@@ -1,8 +1,7 @@
 package com.franco.chat
 
 import android.app.Application
-import com.franco.chat.di.DaggerMyChatComponent
-import com.franco.chat.di.MyChatComponent
+
 import dagger.hilt.android.HiltAndroidApp
 import dagger.internal.DaggerCollections
 

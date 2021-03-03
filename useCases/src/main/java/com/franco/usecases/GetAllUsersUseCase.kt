@@ -7,7 +7,7 @@ import com.franco.domain.User
 
 class GetAllUsersUseCase (
     private val userRepository: UserRepository
-        ):InterfaceGetAllUsersUseCase {
+        ) {
 
-    override fun createAllUsers():List<User> =userRepository.createAllUsers()
+     fun createAllUsers():List<User> =userRepository.createAllUsers()
 }

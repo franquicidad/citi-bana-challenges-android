@@ -5,10 +5,10 @@ import com.franco.RODRIGO
 import com.franco.domain.User
 import javax.inject.Inject
 
-class UserRepository @Inject constructor(
+class UserRepository (
     private val remoteDataSourceSim: RemoteDataSourceSim
-    ):RemoteDataSourceSim {
-    override fun createAllUsers(): List<User> {
+    ) {
+     fun createAllUsers(): List<User> {
         return remoteDataSourceSim.createAllUsers()
     }
 }

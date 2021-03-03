@@ -8,7 +8,6 @@ import com.franco.chat.R
 import com.franco.chat.databinding.UserChatBinding
 import com.franco.domain.User
 import com.franco.usecases.GetAllUsersUseCase
-import com.franco.usecases.InterfaceGetAllUsersUseCase
 import dagger.android.support.DaggerAppCompatActivity
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -18,9 +17,11 @@ class ChatActivity (
 
 ) : AppCompatActivity(),MainPresenter.View{
 
-
-      lateinit var getAllUsersUseCase:InterfaceGetAllUsersUseCase
-    private val presenter by lazy { MainPresenter(getAllUsersUseCase) }
+    @Inject
+    lateinit var getAllUsersUseCase: GetAllUsersUseCase
+   // @Inject
+    private val presenter=MainPresenter(getAllUsersUseCase)
+    //private val presenter by lazy { MainPresenter(getAllUsersUseCase) }
     private lateinit var binding :UserChatBinding
     private lateinit var adapter: ChatAdapter
     private lateinit var list: List<User>
@@ -32,9 +33,9 @@ class ChatActivity (
 
 
         with(binding) {
-               binding.presenter?.onCreate(this@ChatActivity)
+               binding.presenter!!.onCreate(this@ChatActivity)
                list = mutableListOf()
-               list = presenter?.getChatUser(getAllUsersUseCase.createAllUsers())!!
+               list = presenter!!.getChatUser(getAllUsersUseCase.createAllUsers())!!
 
                recyclerViewChat.adapter = ChatAdapter(this@ChatActivity, list)
 
@@ -47,7 +48,7 @@ class ChatActivity (
         super.onDestroy()
     }
 
-    override fun getUsersChat(getAllUsersUseCase: InterfaceGetAllUsersUseCase): List<User> {
+    override fun getUsersChat(getAllUsersUseCase: GetAllUsersUseCase): List<User> {
         return getAllUsersUseCase.createAllUsers()
     }
 
