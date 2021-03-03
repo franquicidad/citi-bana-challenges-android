@@ -1,4 +1,4 @@
-package com.franco.data
+package com.franco.data.sources
 
 import com.franco.domain.User
 

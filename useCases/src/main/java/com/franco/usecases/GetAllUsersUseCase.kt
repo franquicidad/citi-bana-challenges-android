@@ -1,12 +1,12 @@
 package com.franco.usecases
 
-import com.franco.data.UserRepository
-
+import com.franco.data.IUserRepository
 import com.franco.domain.User
+import javax.inject.Inject
 
-class GetAllUsersUseCase (
-    private val userRepository: UserRepository
-        ) {
+class GetAllUsersUseCase  @Inject constructor (
+    private val userRepository: IUserRepository
+        ) : IGetAllUsersUseCase {
 
-     fun createAllUsers():List<User> =userRepository.createAllUsers()
+     override fun createAllUsers():List<User> =userRepository.createAllUsers()
 }

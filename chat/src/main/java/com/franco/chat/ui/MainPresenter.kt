@@ -2,10 +2,11 @@ package com.franco.chat.ui
 
 import com.franco.domain.User
 import com.franco.usecases.GetAllUsersUseCase
+import com.franco.usecases.IGetAllUsersUseCase
 import javax.inject.Inject
 
 class MainPresenter @Inject constructor(
-    private val getAllUsersUseCase: GetAllUsersUseCase
+    private val getAllUsersUseCase: IGetAllUsersUseCase
 ) {
     interface View{
         fun getUsersChat(getAllUsersUseCase: GetAllUsersUseCase): List<User>
@@ -13,15 +14,15 @@ class MainPresenter @Inject constructor(
     private var view:View? =null
     fun onCreate(view:View) {
         this.view=view
-        getChatUser(getAllUsersUseCase.createAllUsers())
+       /* getChatUser(getAllUsersUseCase.createAllUsers())*/
     }
 
     fun onDestroy() {
         this.view=null
     }
 
-    fun getChatUser(userList:List<User>): List<User>? {
-        return userList
+    fun getChatUser(): List<User>? {
+        return getAllUsersUseCase.createAllUsers()
 
     }
 

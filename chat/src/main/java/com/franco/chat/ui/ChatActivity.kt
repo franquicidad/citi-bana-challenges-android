@@ -1,14 +1,13 @@
 package com.franco.chat.ui
 
-import android.graphics.drawable.GradientDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.LinearLayout
-import com.franco.chat.R
 import com.franco.chat.databinding.UserChatBinding
+import com.franco.chat.simNetwork.ApiService
+import com.franco.data.sources.RemoteDataSourceSim
+import com.franco.data.UserRepository
 import com.franco.domain.User
 import com.franco.usecases.GetAllUsersUseCase
-import dagger.android.support.DaggerAppCompatActivity
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -19,23 +18,29 @@ class ChatActivity (
 
     @Inject
     lateinit var getAllUsersUseCase: GetAllUsersUseCase
-   // @Inject
-    private val presenter=MainPresenter(getAllUsersUseCase)
-    //private val presenter by lazy { MainPresenter(getAllUsersUseCase) }
+/*  @Inject*/
+  lateinit var  presenter:MainPresenter
+//    //private val presenter by lazy { MainPresenter(getAllUsersUseCase) }
     private lateinit var binding :UserChatBinding
-    private lateinit var adapter: ChatAdapter
+//    private lateinit var adapter: ChatAdapter
     private lateinit var list: List<User>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = UserChatBinding.inflate(layoutInflater)
             setContentView(binding.root)
-
-
+        /*val repository=UserRepository(remoteDataSourceSim)*/
+/*
+        val getAllUsersUseCase= GetAllUsersUseCase(repository)
+*/
+/*
+        presenter= MainPresenter(getAllUsersUseCase)
+*/
         with(binding) {
+            binding.presenter= MainPresenter(getAllUsersUseCase)
                binding.presenter!!.onCreate(this@ChatActivity)
                list = mutableListOf()
-               list = presenter!!.getChatUser(getAllUsersUseCase.createAllUsers())!!
+               list = presenter!!.getChatUser()!!
 
                recyclerViewChat.adapter = ChatAdapter(this@ChatActivity, list)
 
@@ -51,6 +56,5 @@ class ChatActivity (
     override fun getUsersChat(getAllUsersUseCase: GetAllUsersUseCase): List<User> {
         return getAllUsersUseCase.createAllUsers()
     }
-
 
 }

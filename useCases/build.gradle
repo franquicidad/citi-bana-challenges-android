@@ -1,15 +1,22 @@
 plugins {
     id 'java-library'
     id 'kotlin'
+
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_1_7
-    targetCompatibility = JavaVersion.VERSION_1_7
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
 }
 
 dependencies {
     implementation project(":data")
     implementation project(":domain")
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    implementation "com.google.dagger:hilt-android:2.28-alpha"
+
+
+
 }
+
