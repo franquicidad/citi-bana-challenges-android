@@ -9,7 +9,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:padding="2dp">
 
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
@@ -81,7 +82,7 @@
                     android:layout_marginBottom="8dp"
                     android:text="9:01 am"
                     android:textColor="#599F5E"
-                    android:textSize="6sp"
+                    android:textSize="11sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/guideline4"
@@ -93,7 +94,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    app:layout_constraintGuide_begin="145dp" />
+                    app:layout_constraintGuide_begin="153dp" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
@@ -102,6 +103,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_begin="223dp" />
+            app:layout_constraintGuide_begin="178dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

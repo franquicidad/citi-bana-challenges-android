@@ -1,3 +1,5 @@
+include ':calculator'
+include ':gridexercise'
 include ':domain'
 include ':useCases'
 include ':data'

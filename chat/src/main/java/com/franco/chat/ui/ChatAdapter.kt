@@ -15,8 +15,6 @@ class ChatAdapter(
     private val userList: List<User>
 ) : RecyclerView.Adapter<ChatAdapter.BaseViewHolder<*>>() {
 
-
-
     companion object {
         private const val USER_ONE = 1
         private const val USER_TWO = 2
@@ -57,15 +55,12 @@ class ChatAdapter(
     }
 
     override fun getItemViewType(position: Int): Int {
-        if(userList.get(position).id.equals(USER_ONE)){
-            return 1
-        }else{
-            return 2
-        }
-//        val comparable = adapterDataList[position]
-//        return when (comparable) {
-//            is Int -> USER_ONE
-//            is Int -> USER_TWO
+
+        return userList.get(position).id
+//        val comparable = userList[position]
+//        return when (comparable.id) {
+//            1-> USER_ONE
+//            2 -> USER_TWO
 //            else -> throw IllegalArgumentException("Invalid type of data " + position)
 //        }
     }
@@ -75,8 +70,8 @@ class ChatAdapter(
         override fun bind(userOne: User) {
             with(binding){
                 senderMessageRight.text = userOne.userName
-                messageRight.text=userOne.message
-                timestampRight.text=userOne.timeStamp
+                messageRight.text = userOne.message
+                timestampRight.text = userOne.timeStamp
             }
 
         }

@@ -3,7 +3,9 @@
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="1.7">
       <module name="citi-bana-challenges-android.app" target="1.8" />
+      <module name="citi-bana-challenges-android.calculator" target="1.8" />
       <module name="citi-bana-challenges-android.chat" target="1.8" />
+      <module name="citi-bana-challenges-android.gridexercise" target="1.8" />
       <module name="citi-bana-challenges-android.useCases" target="1.8" />
     </bytecodeTargetLevel>
   </component>

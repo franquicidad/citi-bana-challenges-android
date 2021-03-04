@@ -16,19 +16,21 @@ class ChatActivity (
 
 ) : AppCompatActivity(),MainPresenter.View{
 
+    /*   @Inject
+       lateinit var getAllUsersUseCase: GetAllUsersUseCase*/
     @Inject
-    lateinit var getAllUsersUseCase: GetAllUsersUseCase
-/*  @Inject*/
-  lateinit var  presenter:MainPresenter
-//    //private val presenter by lazy { MainPresenter(getAllUsersUseCase) }
-    private lateinit var binding :UserChatBinding
-//    private lateinit var adapter: ChatAdapter
+    lateinit var presenter: MainPresenter
+
+    //    //private val presenter by lazy { MainPresenter(getAllUsersUseCase) }
+    private lateinit var binding: UserChatBinding
+
+    //    private lateinit var adapter: ChatAdapter
     private lateinit var list: List<User>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = UserChatBinding.inflate(layoutInflater)
-            setContentView(binding.root)
+        setContentView(binding.root)
         /*val repository=UserRepository(remoteDataSourceSim)*/
 /*
         val getAllUsersUseCase= GetAllUsersUseCase(repository)
@@ -37,7 +39,7 @@ class ChatActivity (
         presenter= MainPresenter(getAllUsersUseCase)
 */
         with(binding) {
-            presenter= MainPresenter(getAllUsersUseCase)
+            /* presenter= MainPresenter(getAllUsersUseCase)*/
             presenter!!.onCreate(this@ChatActivity)
                list = mutableListOf()
                list = presenter!!.getChatUser()!!

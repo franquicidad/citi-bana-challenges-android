@@ -6,46 +6,49 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import androidx.databinding.DataBindingUtil
-import androidx.databinding.DataBindingUtil.setContentView
-import androidx.recyclerview.widget.LinearLayoutManager
+
+import androidx.recyclerview.widget.RecyclerView
 import com.franco.chat.ui.ChatActivity
-import com.franco.citi_bana_challenges_android.databinding.ActivityMenuMainBinding
 import com.franco.citi_bana_challenges_android.model.MainMenu
 import com.franco.citi_bana_challenges_android.utils.RecyclerItemClickListener
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
+import com.franco.gridexercise.GridActivity
+
 
 class MainMenuActivity : AppCompatActivity(), CreateMainMenuItems {
 
+    private lateinit var list: MutableList<MainMenu>
+    private lateinit var recyclerViewApp: RecyclerView
 
-    private lateinit var binding: ActivityMenuMainBinding
-    private lateinit var  list: MutableList<MainMenu>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-         binding = setContentView(this, R.layout.activity_menu_main)
+        setContentView(R.layout.activity_menu_main)
 
-        with(binding){
-            val list=createMainModuleNames()
-             recyclerViewApp.adapter= MainMenuAdapter(list)
+        recyclerViewApp = findViewById(R.id.recyclerView_app)
+
+
+        val list = createMainModuleNames()
+        recyclerViewApp.adapter = MainMenuAdapter(list)
 
 //            recyclerViewApp.setOnClickListener{
 //                    startActivity<ChatActivity>()
 //            }
-        }
-        binding.recyclerViewApp.addOnItemTouchListener(RecyclerItemClickListener
-            (this,binding.recyclerViewApp, object : RecyclerItemClickListener.OnItemClickListener{
-            override fun onItemClick(view: View, position: Int) {
-                when (position){
-                    0 -> startActivity<ChatActivity>()
+
+        recyclerViewApp.addOnItemTouchListener(
+            RecyclerItemClickListener
+                (this, recyclerViewApp, object : RecyclerItemClickListener.OnItemClickListener {
+                override fun onItemClick(view: View, position: Int) {
+                    when (position) {
+                        0 -> startActivity<ChatActivity>()
+                        1 -> startActivity<GridActivity>()
+                    }
                 }
-            }
 
-            override fun onItemLongClick(view: View?, position: Int) {
-                TODO("Not yet implemented")
-            }
+                override fun onItemLongClick(view: View?, position: Int) {
+                    TODO("Not yet implemented")
+                }
 
-        }))
+            })
+        )
 
 
     }
@@ -53,6 +56,7 @@ class MainMenuActivity : AppCompatActivity(), CreateMainMenuItems {
     override  fun createMainModuleNames(): List<MainMenu> {
          list = mutableListOf()
         list.add(MainMenu("Chat"))
+        list.add(MainMenu("GridView"))
 
         return list
     }
