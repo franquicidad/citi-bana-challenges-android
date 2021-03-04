@@ -15,6 +15,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:layout_marginEnd="4dp"
             app:cardCornerRadius="30dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline2"
@@ -32,8 +33,8 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="5dp"
                     android:text="Nombre1"
-                    android:textStyle="bold"
                     android:textColor="@android:color/black"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
@@ -43,16 +44,18 @@
                     android:id="@+id/messageRight"
                     android:layout_width="0dp"
                     android:layout_height="48dp"
-                    android:layout_marginStart="20dp"
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="5dp"
-                    android:layout_marginEnd="35dp"
+                    android:layout_marginEnd="8dp"
                     android:layout_marginBottom="10dp"
                     android:ellipsize="end"
                     android:text="dfasdfsadfasdfdafgsfgasdfsadfasdfasdfadsfgasfgadsfgasdfasdfasdfasdfasdfasdfsadfsfgadfg"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline4"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline5"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/senderMessageRight"
-                    app:layout_constraintTop_toBottomOf="@+id/senderMessageRight">
+                    app:layout_constraintTop_toBottomOf="@+id/senderMessageRight"
+                    app:layout_constraintVertical_bias="0.0">
 
                 </TextView>
 
@@ -76,12 +79,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="8dp"
-                    android:textStyle="bold"
                     android:text="9:01 am"
-                    android:textSize="6sp"
                     android:textColor="#599F5E"
+                    android:textSize="6sp"
+                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/guideline4"
+                    app:layout_constraintHorizontal_bias="0.095"
                     app:layout_constraintStart_toStartOf="@+id/guideline5" />
 
                 <androidx.constraintlayout.widget.Guideline
@@ -89,7 +93,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    app:layout_constraintGuide_begin="197dp" />
+                    app:layout_constraintGuide_begin="145dp" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
@@ -98,6 +102,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_begin="151dp" />
+            app:layout_constraintGuide_begin="223dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

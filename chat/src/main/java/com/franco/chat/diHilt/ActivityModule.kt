@@ -25,5 +25,4 @@ abstract fun bindRemoteDatasource(apiServiceImpl: UserRemoteDataSource): RemoteD
 @Binds
 abstract fun bindUseCase(getallUser: GetAllUsersUseCase): IGetAllUsersUseCase
 
-
 }

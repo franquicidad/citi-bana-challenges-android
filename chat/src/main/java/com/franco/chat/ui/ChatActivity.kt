@@ -37,8 +37,8 @@ class ChatActivity (
         presenter= MainPresenter(getAllUsersUseCase)
 */
         with(binding) {
-            binding.presenter= MainPresenter(getAllUsersUseCase)
-               binding.presenter!!.onCreate(this@ChatActivity)
+            presenter= MainPresenter(getAllUsersUseCase)
+            presenter!!.onCreate(this@ChatActivity)
                list = mutableListOf()
                list = presenter!!.getChatUser()!!
 
