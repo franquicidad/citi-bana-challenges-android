@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.View
 
 import androidx.recyclerview.widget.RecyclerView
+import com.franco.calculator.MainCalculator
 import com.franco.chat.ui.ChatActivity
 import com.franco.citi_bana_challenges_android.model.MainMenu
 import com.franco.citi_bana_challenges_android.utils.RecyclerItemClickListener
@@ -40,6 +41,7 @@ class MainMenuActivity : AppCompatActivity(), CreateMainMenuItems {
                     when (position) {
                         0 -> startActivity<ChatActivity>()
                         1 -> startActivity<GridActivity>()
+                        2 -> startActivity<MainCalculator>()
                     }
                 }
 
@@ -57,6 +59,7 @@ class MainMenuActivity : AppCompatActivity(), CreateMainMenuItems {
          list = mutableListOf()
         list.add(MainMenu("Chat"))
         list.add(MainMenu("GridView"))
+        list.add(MainMenu("Calculator"))
 
         return list
     }

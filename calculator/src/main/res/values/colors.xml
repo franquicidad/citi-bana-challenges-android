@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="purple_500">#FF6200EE</color>
+    <color name="per_gray">#716369</color>
+    <color name="per_red">#850808</color>
+    <color name="per_blue">#122F78</color>
+    <color name="per_bluesea">#238AD8</color>
+    <color name="per_purple">#620A6C</color>
+    <color name="per_yellow">#E8DD27</color>
+    <color name="per_white">#FFFFFF</color>
 </resources>
