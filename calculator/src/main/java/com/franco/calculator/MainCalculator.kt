@@ -16,6 +16,7 @@ class MainCalculator : AppCompatActivity() {
 
     private var mValueOne: Double = 0.0
     private var mValueTwo: Double = 0.0
+    private var mValueResult:Double = 0.0
     private lateinit var value: String
     private var numberOfInputs=0
 
@@ -28,7 +29,7 @@ class MainCalculator : AppCompatActivity() {
         val locale = Locale.getDefault().language
         when (locale) {
             "es" -> doNothing()
-            "en" -> changeColors()
+            "en" -> doNothing()
         }
         with(binding) {
             buttonOne.setOnClickListener {inputNumberIntoCalculator(1) }
@@ -43,22 +44,32 @@ class MainCalculator : AppCompatActivity() {
             buttonCero.setOnClickListener { inputNumberIntoCalculator(0) }
 
             buttonMulti.setOnClickListener {
+                performValidationIfUserWantsToCalculateMoreUponResult()
                 if(numberOfInputs==0){
                     numberOfInputs++
                 }
                 if (screenCalc.text == null) {
                     screenCalc.text = ""
                 } else {
+                        if(!value.equals("")){
+                            mValueOne = value?.toDouble()
+                        }
+                        if(mValueResult > 0.0){
+                            screenCalc.text=""
+                            screenCalc.text=mValueResult.toString()
+                        }
+                        value = ""
+                        isMultiplication = true
+                    if(mValueResult == 0.0) {
+                        screenCalc.text = null
+                    }
+                        operatorSign.text = "X"
 
-                    mValueOne = value.toDouble()
-                    value=""
-                    isMultiplication = true
-                    screenCalc.text = null
-                    operatorSign.text= "X"
 
                 }
             }
             buttonPlus.setOnClickListener {
+                performValidationIfUserWantsToCalculateMoreUponResult()
                 if(numberOfInputs==0){
                     numberOfInputs++
                 }
@@ -81,6 +92,7 @@ class MainCalculator : AppCompatActivity() {
                 )
             }
             buttonMinus.setOnClickListener {
+                performValidationIfUserWantsToCalculateMoreUponResult()
                 if(numberOfInputs==0){
                     numberOfInputs++
                 }
@@ -96,6 +108,7 @@ class MainCalculator : AppCompatActivity() {
                 }
             }
             buttonDivision.setOnClickListener {
+                performValidationIfUserWantsToCalculateMoreUponResult()
                 if(numberOfInputs==0){
                     numberOfInputs++
                 }
@@ -111,70 +124,82 @@ class MainCalculator : AppCompatActivity() {
                 }
             }
             ButtonCanceled.setOnClickListener {
+
                 screenResult.text = ""
                 screenCalc.text = ""
                 operatorSign.text=""
                 value=""
             }
+
             buttonEquals.setOnClickListener {
+                    if(!value.equals("")) {
+                        mValueTwo = value.toDouble()
+                    }
+                    if (isAddition) {
+                        mValueResult = doPlusOp(mValueOne, mValueTwo).toDouble()
+                        screenResult.text = mValueResult.toString()
+                        isAddition = false;
+                    }
 
-                val first = mValueOne
-                mValueTwo = value.toDouble()
-                if (isAddition) {
+                    if (isSubstraction) {
+                        mValueResult = doSubstractOp(mValueOne, mValueTwo).toDouble()
+                        screenResult.text = mValueResult.toString()
+                        isSubstraction = false;
+                    }
 
-                    screenResult.text = doPlusOp(mValueOne,mValueTwo)
-                    isAddition = false;
-                }
+                    if (isMultiplication) {
+                        mValueResult = doMultiOp(mValueOne, mValueTwo).toDouble()
+                        screenResult.text = mValueResult.toString()
+                        isMultiplication = false;
 
-                if (isSubstraction) {
-                    screenResult.text = doSubstractOp(mValueOne,mValueTwo)
-                    isSubstraction = false;
-                }
+                    }
 
-                if (isMultiplication) {
-                    screenResult.text = doMultiOp(mValueOne,mValueTwo)
-                    isMultiplication = false;
+                    if (isDivision) {
+                        mValueResult = doDivisionOp(mValueOne, mValueTwo).toDouble()
+                        screenResult.text = mValueResult.toString()
+                        isDivision = false;
+                    }
 
-                }
+                    numberOfInputs = 0
+                    value = ""
 
-                if (isDivision) {
-                    screenResult.text = doDivisionOp(mValueOne,mValueTwo)
-                    isDivision = false;
-                }
-
-                numberOfInputs=0
-                value=""
 
             }
+
         }
+
 
     }
 
+    private fun CalculatorBinding.performValidationIfUserWantsToCalculateMoreUponResult() {
+        if (mValueResult != 0.0) {
+            screenCalc.text = mValueResult.toString()
+            mValueOne = mValueResult
+        }
+    }
+
     private fun CalculatorBinding.inputNumberIntoCalculator(number:Int) {
-//        if (value.contains("")  ||  numberOfInputs == 0) {
-//            value = "$number"
-//            screenCalc.text = "$number"
-//        } else {
+
             val string1 =value
             val string2 =number
             val concat ="$string1$string2"
             value = concat
             screenCalc.text = value
-//        }
+
     }
 
     private fun doSubstractOp(valueOne:Double,valueTwo:Double):String{
-        return valueOne.minus(mValueTwo).toString()
+        return valueOne.minus(valueTwo).toString()
     }
     private fun doPlusOp(valueOne:Double,valueTwo:Double):String{
-        return valueOne.plus(mValueTwo).toString()
+        return valueOne.plus(valueTwo).toString()
     }
     private fun doMultiOp(valueOne:Double,valueTwo:Double):String{
-        numberOfInputs++
-        return valueOne.times(mValueTwo).toString()
+
+        return valueOne.times(valueTwo).toString()
     }
     private fun doDivisionOp(valueOne:Double,valueTwo:Double):String{
-        return valueOne.div(mValueTwo).toString()
+        return valueOne.div(valueTwo).toString()
     }
 
 
