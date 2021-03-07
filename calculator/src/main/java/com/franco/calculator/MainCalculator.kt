@@ -29,7 +29,7 @@ class MainCalculator : AppCompatActivity() {
         val locale = Locale.getDefault().language
         when (locale) {
             "es" -> doNothing()
-            "en" -> doNothing()
+            "en" -> changeColors()
         }
         with(binding) {
             buttonOne.setOnClickListener {inputNumberIntoCalculator(1) }
@@ -76,12 +76,21 @@ class MainCalculator : AppCompatActivity() {
                 if (screenCalc.text == null) {
                     screenCalc.text = ""
                 } else {
-
-                    mValueOne = value.toDouble()
-                    value=""
+                    if(!value.equals("")){
+                        mValueOne = value?.toDouble()
+                    }
+                    if(mValueResult > 0.0){
+                        screenCalc.text=""
+                        screenCalc.text=mValueResult.toString()
+                    }
+                    value = ""
                     isAddition = true
-                    screenCalc.text = null
-                    operatorSign.text= "X"
+                    if(mValueResult == 0.0) {
+                        screenCalc.text = null
+                    }
+                    operatorSign.text = "X"
+
+
                 }
             }
             buttonPlusMinus.setOnClickListener {
@@ -93,18 +102,28 @@ class MainCalculator : AppCompatActivity() {
             }
             buttonMinus.setOnClickListener {
                 performValidationIfUserWantsToCalculateMoreUponResult()
+                performValidationIfUserWantsToCalculateMoreUponResult()
                 if(numberOfInputs==0){
                     numberOfInputs++
                 }
                 if (screenCalc.text == null) {
                     screenCalc.text = ""
                 } else {
-
-                    mValueOne = value.toDouble()
-                    value=""
+                    if(!value.equals("")){
+                        mValueOne = value?.toDouble()
+                    }
+                    if(mValueResult > 0.0){
+                        screenCalc.text=""
+                        screenCalc.text=mValueResult.toString()
+                    }
+                    value = ""
                     isSubstraction = true
-                    screenCalc.text = null
-                    operatorSign.text= "X"
+                    if(mValueResult == 0.0) {
+                        screenCalc.text = null
+                    }
+                    operatorSign.text = "X"
+
+
                 }
             }
             buttonDivision.setOnClickListener {
@@ -115,12 +134,21 @@ class MainCalculator : AppCompatActivity() {
                 if (screenCalc.text == null) {
                     screenCalc.text = ""
                 } else {
-
-                    mValueOne = value.toDouble()
-                    value=""
+                    if(!value.equals("")){
+                        mValueOne = value?.toDouble()
+                    }
+                    if(mValueResult > 0.0){
+                        screenCalc.text=""
+                        screenCalc.text=mValueResult.toString()
+                    }
+                    value = ""
                     isDivision = true
-                    screenCalc.text = null
-                    operatorSign.text= "X"
+                    if(mValueResult == 0.0) {
+                        screenCalc.text = null
+                    }
+                    operatorSign.text = "X"
+
+
                 }
             }
             ButtonCanceled.setOnClickListener {
