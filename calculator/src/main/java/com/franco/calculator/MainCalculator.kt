@@ -39,7 +39,7 @@ class MainCalculator : AppCompatActivity() {
             buttonSix.setOnClickListener { inputNumberIntoCalculator(6) }
             buttonSeven.setOnClickListener { inputNumberIntoCalculator(7) }
             buttonEight.setOnClickListener { inputNumberIntoCalculator(8) }
-            buttonEight.setOnClickListener { inputNumberIntoCalculator(9) }
+            buttonNine.setOnClickListener { inputNumberIntoCalculator(9) }
             buttonCero.setOnClickListener { inputNumberIntoCalculator(0) }
 
             buttonMulti.setOnClickListener {
@@ -51,19 +51,26 @@ class MainCalculator : AppCompatActivity() {
                 } else {
 
                     mValueOne = value.toDouble()
+                    value=""
                     isMultiplication = true
                     screenCalc.text = null
                     operatorSign.text= "X"
-                    value = 0.0.toString()
+
                 }
             }
             buttonPlus.setOnClickListener {
+                if(numberOfInputs==0){
+                    numberOfInputs++
+                }
                 if (screenCalc.text == null) {
                     screenCalc.text = ""
                 } else {
+
                     mValueOne = value.toDouble()
+                    value=""
                     isAddition = true
                     screenCalc.text = null
+                    operatorSign.text= "X"
                 }
             }
             buttonPlusMinus.setOnClickListener {
@@ -74,22 +81,33 @@ class MainCalculator : AppCompatActivity() {
                 )
             }
             buttonMinus.setOnClickListener {
-                if (binding.screenCalc.text == null) {
-                    screenCalc.text = ""
-                } else {
-                    mValueOne = value.toDouble()
-                    isSubstraction = true
-                    screenCalc.text = null
+                if(numberOfInputs==0){
+                    numberOfInputs++
                 }
-            }
-            buttonDivision.setOnClickListener {
-                if (binding.screenCalc.text == null) {
+                if (screenCalc.text == null) {
                     screenCalc.text = ""
                 } else {
 
                     mValueOne = value.toDouble()
+                    value=""
+                    isSubstraction = true
+                    screenCalc.text = null
+                    operatorSign.text= "X"
+                }
+            }
+            buttonDivision.setOnClickListener {
+                if(numberOfInputs==0){
+                    numberOfInputs++
+                }
+                if (screenCalc.text == null) {
+                    screenCalc.text = ""
+                } else {
+
+                    mValueOne = value.toDouble()
+                    value=""
                     isDivision = true
                     screenCalc.text = null
+                    operatorSign.text= "X"
                 }
             }
             ButtonCanceled.setOnClickListener {
@@ -99,12 +117,11 @@ class MainCalculator : AppCompatActivity() {
                 value=""
             }
             buttonEquals.setOnClickListener {
-                value= binding.screenCalc.text.toString()
+
                 val first = mValueOne
                 mValueTwo = value.toDouble()
                 if (isAddition) {
-                    val value1 = mValueOne
-                    val value2 = mValueTwo
+
                     screenResult.text = doPlusOp(mValueOne,mValueTwo)
                     isAddition = false;
                 }
@@ -124,19 +141,27 @@ class MainCalculator : AppCompatActivity() {
                     screenResult.text = doDivisionOp(mValueOne,mValueTwo)
                     isDivision = false;
                 }
+
+                numberOfInputs=0
+                value=""
+
+
             }
         }
 
     }
 
     private fun CalculatorBinding.inputNumberIntoCalculator(number:Int) {
-        if (value.equals("") && numberOfInputs == 0) {
-            value = "$number"
-            screenCalc.text = "$number"
-        } else {
-            value = "${value + "$number"}"
+//        if (value.contains("")  ||  numberOfInputs == 0) {
+//            value = "$number"
+//            screenCalc.text = "$number"
+//        } else {
+            val string1 =value
+            val string2 =number
+            val concat ="$string1$string2"
+            value = concat
             screenCalc.text = value
-        }
+//        }
     }
 
     private fun doSubstractOp(valueOne:Double,valueTwo:Double):String{
@@ -146,6 +171,7 @@ class MainCalculator : AppCompatActivity() {
         return valueOne.plus(mValueTwo).toString()
     }
     private fun doMultiOp(valueOne:Double,valueTwo:Double):String{
+        numberOfInputs++
         return valueOne.times(mValueTwo).toString()
     }
     private fun doDivisionOp(valueOne:Double,valueTwo:Double):String{

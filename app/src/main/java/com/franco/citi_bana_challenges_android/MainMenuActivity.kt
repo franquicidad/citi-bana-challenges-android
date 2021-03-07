@@ -6,6 +6,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 
 import androidx.recyclerview.widget.RecyclerView
 import com.franco.calculator.MainCalculator
@@ -46,7 +47,7 @@ class MainMenuActivity : AppCompatActivity(), CreateMainMenuItems {
                 }
 
                 override fun onItemLongClick(view: View?, position: Int) {
-                    TODO("Not yet implemented")
+                   Toast.makeText(this@MainMenuActivity,"Action not supported yet!",Toast.LENGTH_LONG).show()
                 }
 
             })
