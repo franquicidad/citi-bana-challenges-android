@@ -145,7 +145,6 @@ class MainCalculator : AppCompatActivity() {
                 numberOfInputs=0
                 value=""
 
-
             }
         }
 
