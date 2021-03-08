@@ -1,3 +1,4 @@
+include ':animate'
 include ':calculator'
 include ':gridexercise'
 include ':domain'
